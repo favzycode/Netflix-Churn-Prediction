@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="Netflix Churn Predictor",
+    page_icon="🎬",
     layout="centered"
 )
 
