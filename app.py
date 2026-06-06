@@ -305,7 +305,7 @@ if st.button("  PREDICT CHURN", use_container_width=True, type="primary"):
         </div>
         """, unsafe_allow_html=True)
         st.markdown("""
-        **💡 Keep it up:**
+        **💡 Evaluation: This is good news!**
         - Continue personalised content recommendations
         - Reward loyalty with exclusive previews or early access
         """)
