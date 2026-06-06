@@ -108,12 +108,12 @@ def preprocess_and_predict(df):
     return prediction, probability
 
 # ── UI ────────────────────────────────────────────────────────────────────────
-st.title("🎬 Netflix Customer Churn Predictor")
+st.title(" Netflix Customer Churn Predictor")
 st.markdown("Fill in the customer details below to predict whether they are likely to churn.")
 st.divider()
 
 # ─ Numerical inputs ──────────────────────────────────────────────────────────
-st.subheader("📊 Customer Activity")
+st.subheader(" Customer Activity")
 
 col1, col2 = st.columns(2)
 with col1:
@@ -128,7 +128,7 @@ with col2:
 st.divider()
 
 # ─ Categorical inputs ─────────────────────────────────────────────────────────
-st.subheader("🗂️ Customer Profile")
+st.subheader(" Customer Profile")
 
 col3, col4 = st.columns(2)
 with col3:
