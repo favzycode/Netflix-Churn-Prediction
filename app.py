@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="Netflix Churn Predictor",
-    page_icon="🎬",
     layout="centered"
 )
 
@@ -222,7 +221,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Input form ────────────────────────────────────────────────────────────────
-st.markdown("#### 📊 Customer Activity")
+st.markdown("####  Customer Activity")
 col1, col2 = st.columns(2)
 with col1:
     age                    = st.number_input("Age", min_value=10, max_value=100, value=30)
@@ -234,7 +233,7 @@ with col2:
     avg_watch_time_per_day = st.number_input("Avg Watch Time Per Day (hrs)", min_value=0.0, max_value=24.0, value=2.0, step=0.1)
 
 st.markdown("<hr style='border-color:#333'/>", unsafe_allow_html=True)
-st.markdown("#### 🗂️ Customer Profile")
+st.markdown("####  Customer Profile")
 
 col3, col4 = st.columns(2)
 with col3:
@@ -249,7 +248,7 @@ with col4:
 st.markdown("<hr style='border-color:#333'/>", unsafe_allow_html=True)
 
 # ── Predict button ────────────────────────────────────────────────────────────
-if st.button("🔮  PREDICT CHURN", use_container_width=True, type="primary"):
+if st.button("  PREDICT CHURN", use_container_width=True, type="primary"):
     input_df = build_input_df(
         age, watch_hours, last_login_days, monthly_fee,
         number_of_profiles, avg_watch_time_per_day,
@@ -260,7 +259,7 @@ if st.button("🔮  PREDICT CHURN", use_container_width=True, type="primary"):
     churn_prob  = probability[1] * 100
     retain_prob = probability[0] * 100
 
-    st.markdown("#### 📋 Prediction Result")
+    st.markdown("####  Prediction Result")
 
     # Metric cards
     m1, m2, m3 = st.columns(3)
@@ -339,7 +338,7 @@ if st.button("🔮  PREDICT CHURN", use_container_width=True, type="primary"):
 st.markdown("<hr style='border-color:#222; margin-top:36px'/>", unsafe_allow_html=True)
 st.markdown("""
 <p style='text-align:center; color:#444; font-size:0.78rem; padding-bottom:16px;'>
-    Built with ❤️ by <strong style="color:#666;">Group 1</strong> ·
+ <strong style="color:#666;">Group 1</strong> ·
     TechCrush AI/ML Bootcamp Capstone Project
 </p>
 """, unsafe_allow_html=True)
