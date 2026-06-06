@@ -15,101 +15,93 @@ st.set_page_config(
 # ── Global styles ─────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     * { font-family: 'Inter', sans-serif !important; }
 
-    .stApp { background-color: #0f0f0f !important; }
-
-    /* Hide default streamlit header/footer */
+    .stApp { background-color: #0a0a0a !important; }
     #MainMenu, footer, header { visibility: hidden; }
 
-    /* All text white by default */
-    p, span, div, label, li { color: #e0e0e0 !important; }
+    p, span, div, label, li { color: #d0d0d0 !important; }
     h1, h2, h3, h4 { color: #ffffff !important; }
 
-    /* Section label */
-    .section-label {
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 2px;
-        color: #E50914 !important;
-        text-transform: uppercase;
-        margin-bottom: 6px;
-    }
-
-    /* Input fields */
+    /* Inputs */
     input[type="number"] {
-        background-color: #1c1c1c !important;
+        background-color: #161616 !important;
         color: #ffffff !important;
-        border: 1px solid #2e2e2e !important;
-        border-radius: 6px !important;
+        border: 1px solid #252525 !important;
+        border-radius: 8px !important;
+        font-size: 0.9rem !important;
     }
     input[type="number"]:focus {
         border-color: #E50914 !important;
-        box-shadow: 0 0 0 2px rgba(229,9,20,0.2) !important;
+        box-shadow: 0 0 0 3px rgba(229,9,20,0.15) !important;
     }
 
     /* Selectbox */
     [data-baseweb="select"] > div {
-        background-color: #1c1c1c !important;
-        border: 1px solid #2e2e2e !important;
-        color: #ffffff !important;
-        border-radius: 6px !important;
+        background-color: #161616 !important;
+        border: 1px solid #252525 !important;
+        border-radius: 8px !important;
     }
-    [data-baseweb="menu"] { background-color: #1c1c1c !important; }
-    [role="option"] { background-color: #1c1c1c !important; color: #ffffff !important; }
+    [data-baseweb="select"] > div > div { color: #ffffff !important; }
+    [data-baseweb="menu"] { background-color: #1a1a1a !important; border: 1px solid #2a2a2a !important; }
+    [role="option"] { background-color: #1a1a1a !important; color: #ccc !important; }
     [role="option"]:hover { background-color: #E50914 !important; color: #fff !important; }
 
     /* Labels */
-    label { color: #aaaaaa !important; font-size: 0.82rem !important; font-weight: 500 !important; }
+    label { color: #666 !important; font-size: 0.78rem !important; font-weight: 500 !important; letter-spacing: 0.3px !important; }
 
     /* Predict button */
     [data-testid="baseButton-primary"] {
-        background: linear-gradient(135deg, #E50914, #b20710) !important;
-        color: #FFFFFF !important;
+        background: #E50914 !important;
+        color: #fff !important;
         border: none !important;
-        font-size: 1rem !important;
+        font-size: 0.88rem !important;
         font-weight: 700 !important;
-        border-radius: 6px !important;
-        letter-spacing: 1.5px !important;
-        padding: 0.65rem 1rem !important;
+        border-radius: 8px !important;
+        letter-spacing: 2px !important;
         text-transform: uppercase !important;
-        box-shadow: 0 4px 20px rgba(229,9,20,0.35) !important;
-        transition: all 0.2s !important;
+        height: 48px !important;
+        box-shadow: 0 0 24px rgba(229,9,20,0.3) !important;
     }
     [data-testid="baseButton-primary"]:hover {
-        box-shadow: 0 6px 28px rgba(229,9,20,0.55) !important;
-        transform: translateY(-1px) !important;
+        background: #c5060f !important;
+        box-shadow: 0 0 36px rgba(229,9,20,0.5) !important;
     }
 
-    /* Divider */
-    hr { border-color: #1f1f1f !important; margin: 20px 0 !important; }
+    hr { border-color: #1a1a1a !important; }
 
-    /* Metric cards */
+    /* Metric override */
     [data-testid="stMetric"] {
-        background-color: #161616 !important;
+        background: #111 !important;
+        border: 1px solid #1e1e1e !important;
+        border-radius: 12px !important;
+        padding: 20px !important;
+    }
+    [data-testid="stMetricValue"] {
+        color: #fff !important;
+        font-size: 2rem !important;
+        font-weight: 800 !important;
+        letter-spacing: -0.5px !important;
+    }
+    [data-testid="stMetricLabel"] {
+        color: #444 !important;
+        font-size: 0.7rem !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Expander */
+    [data-testid="stExpander"] {
+        background: #0f0f0f !important;
+        border: 1px solid #1a1a1a !important;
         border-radius: 10px !important;
-        padding: 18px 16px !important;
-        border: 1px solid #2a2a2a !important;
     }
-    [data-testid="stMetricValue"] { color: #ffffff !important; font-size: 1.8rem !important; font-weight: 800 !important; }
-    [data-testid="stMetricLabel"] { color: #666 !important; font-size: 0.78rem !important; letter-spacing: 1px !important; text-transform: uppercase !important; }
-
-    /* Number input step buttons */
-    [data-testid="stNumberInputField"] {
-        background-color: #1c1c1c !important;
-        color: #ffffff !important;
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #0f0f0f; }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+    [data-testid="stExpander"] summary { color: #444 !important; font-size: 0.8rem !important; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Load model & scaler ───────────────────────────────────────────────────────
+# ── Load artifacts ────────────────────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 @st.cache_resource
@@ -120,12 +112,10 @@ def load_artifacts():
 
 model, scaler = load_artifacts()
 
-# ── Feature constants ─────────────────────────────────────────────────────────
+# ── Constants ─────────────────────────────────────────────────────────────────
 COLS_TO_SCALE = ['age', 'watch_hours', 'last_login_days', 'monthly_fee',
                  'number_of_profiles', 'avg_watch_time_per_day']
-
 SUBSCRIPTION_MAP = {'Basic': 0, 'Standard': 1, 'Premium': 2}
-
 FEATURE_ORDER = [
     'age', 'subscription_type', 'watch_hours', 'last_login_days',
     'monthly_fee', 'number_of_profiles', 'avg_watch_time_per_day',
@@ -139,51 +129,33 @@ FEATURE_ORDER = [
     'favorite_genre_Drama', 'favorite_genre_Horror',
     'favorite_genre_Romance', 'favorite_genre_Sci-Fi',
 ]
-
 FEATURE_LABELS = {
-    'watch_hours': 'Watch Hours',
-    'last_login_days': 'Days Since Login',
-    'age': 'Age',
-    'monthly_fee': 'Monthly Fee',
-    'avg_watch_time_per_day': 'Avg Daily Watch Time',
-    'subscription_type': 'Subscription Type',
-    'number_of_profiles': 'No. of Profiles',
-    'gender_Male': 'Gender: Male',
-    'gender_Other': 'Gender: Other',
-    'region_Asia': 'Region: Asia',
-    'region_Europe': 'Region: Europe',
-    'region_North America': 'Region: N. America',
-    'region_Oceania': 'Region: Oceania',
-    'region_South America': 'Region: S. America',
-    'device_Laptop': 'Device: Laptop',
-    'device_Mobile': 'Device: Mobile',
-    'device_TV': 'Device: TV',
-    'device_Tablet': 'Device: Tablet',
-    'payment_method_Crypto': 'Payment: Crypto',
-    'payment_method_Debit Card': 'Payment: Debit Card',
-    'payment_method_Gift Card': 'Payment: Gift Card',
-    'payment_method_PayPal': 'Payment: PayPal',
-    'favorite_genre_Comedy': 'Genre: Comedy',
-    'favorite_genre_Documentary': 'Genre: Documentary',
-    'favorite_genre_Drama': 'Genre: Drama',
-    'favorite_genre_Horror': 'Genre: Horror',
-    'favorite_genre_Romance': 'Genre: Romance',
-    'favorite_genre_Sci-Fi': 'Genre: Sci-Fi',
+    'watch_hours': 'Watch Hours', 'last_login_days': 'Days Since Login',
+    'age': 'Age', 'monthly_fee': 'Monthly Fee',
+    'avg_watch_time_per_day': 'Avg Daily Watch', 'subscription_type': 'Subscription Type',
+    'number_of_profiles': 'No. of Profiles', 'gender_Male': 'Gender: Male',
+    'gender_Other': 'Gender: Other', 'region_Asia': 'Region: Asia',
+    'region_Europe': 'Region: Europe', 'region_North America': 'Region: N. America',
+    'region_Oceania': 'Region: Oceania', 'region_South America': 'Region: S. America',
+    'device_Laptop': 'Device: Laptop', 'device_Mobile': 'Device: Mobile',
+    'device_TV': 'Device: TV', 'device_Tablet': 'Device: Tablet',
+    'payment_method_Crypto': 'Payment: Crypto', 'payment_method_Debit Card': 'Payment: Debit',
+    'payment_method_Gift Card': 'Payment: Gift Card', 'payment_method_PayPal': 'Payment: PayPal',
+    'favorite_genre_Comedy': 'Genre: Comedy', 'favorite_genre_Documentary': 'Genre: Documentary',
+    'favorite_genre_Drama': 'Genre: Drama', 'favorite_genre_Horror': 'Genre: Horror',
+    'favorite_genre_Romance': 'Genre: Romance', 'favorite_genre_Sci-Fi': 'Genre: Sci-Fi',
 }
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# ── Logic ─────────────────────────────────────────────────────────────────────
 def build_input_df(age, watch_hours, last_login_days, monthly_fee,
                    number_of_profiles, avg_watch_time_per_day,
                    subscription_type, gender, region, device,
                    payment_method, favorite_genre):
     row = {col: 0 for col in FEATURE_ORDER}
-    row['age']                    = age
-    row['watch_hours']            = watch_hours
-    row['last_login_days']        = last_login_days
-    row['monthly_fee']            = monthly_fee
-    row['number_of_profiles']     = number_of_profiles
-    row['avg_watch_time_per_day'] = avg_watch_time_per_day
-    row['subscription_type']      = SUBSCRIPTION_MAP[subscription_type]
+    row.update({'age': age, 'watch_hours': watch_hours, 'last_login_days': last_login_days,
+                'monthly_fee': monthly_fee, 'number_of_profiles': number_of_profiles,
+                'avg_watch_time_per_day': avg_watch_time_per_day,
+                'subscription_type': SUBSCRIPTION_MAP[subscription_type]})
     if gender != 'Female':                row[f'gender_{gender}'] = 1
     if region != 'Africa':                row[f'region_{region}'] = 1
     if device != 'Desktop':               row[f'device_{device}'] = 1
@@ -194,237 +166,259 @@ def build_input_df(age, watch_hours, last_login_days, monthly_fee,
 def preprocess_and_predict(df):
     df = df.copy()
     df[COLS_TO_SCALE] = scaler.transform(df[COLS_TO_SCALE])
-    prediction  = model.predict(df)[0]
-    probability = model.predict_proba(df)[0]
-    return prediction, probability
+    pred = model.predict(df)[0]
+    prob = model.predict_proba(df)[0]
+    return pred, prob
 
-def plot_feature_importance(top_n=10):
-    importances  = model.feature_importances_
-    indices      = np.argsort(importances)[::-1][:top_n]
-    top_features = [FEATURE_LABELS.get(FEATURE_ORDER[i], FEATURE_ORDER[i]) for i in indices]
-    top_values   = [importances[i] for i in indices]
+def plot_feature_importance():
+    importances = model.feature_importances_
+    indices     = np.argsort(importances)[::-1][:10]
+    features    = [FEATURE_LABELS.get(FEATURE_ORDER[i], FEATURE_ORDER[i]) for i in indices]
+    values      = [importances[i] for i in indices]
 
-    fig, ax = plt.subplots(figsize=(6, 3.5))
-    fig.patch.set_facecolor('#111111')
-    ax.set_facecolor('#111111')
+    fig, ax = plt.subplots(figsize=(5.5, 3.2))
+    fig.patch.set_facecolor('#0f0f0f')
+    ax.set_facecolor('#0f0f0f')
 
-    colors = ['#E50914' if i == 0 else '#4a0a0a' for i in range(len(top_values))]
-    ax.barh(top_features[::-1], top_values[::-1], color=colors[::-1], edgecolor='none', height=0.55)
+    colors = ['#E50914'] + ['#3a0a0a'] * 9
+    ax.barh(features[::-1], values[::-1], color=colors[::-1], edgecolor='none', height=0.5)
 
-    ax.set_xlabel('Importance Score', color='#555', fontsize=8)
-    ax.tick_params(colors='#666', labelsize=7.5)
-    for spine in ax.spines.values():
-        spine.set_visible(False)
-    ax.xaxis.set_tick_params(length=0)
-    ax.yaxis.set_tick_params(length=0)
-    ax.set_title('Feature Importance', color='#888', fontsize=9, loc='left', pad=8)
-
-    plt.tight_layout(pad=1.5)
+    for spine in ax.spines.values(): spine.set_visible(False)
+    ax.tick_params(colors='#444', labelsize=7.5, length=0)
+    ax.set_xlabel('Importance', color='#333', fontsize=7.5)
+    ax.set_title('Top 10 Predictive Features', color='#555', fontsize=8.5,
+                 loc='left', pad=10, fontweight='600')
+    plt.tight_layout(pad=1.2)
     return fig
 
-# ═════════════════════════════════════════════════════════════════════════════
-# LAYOUT — two columns: left = form, right = results
-# ═════════════════════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════
+# PAGE
+# ═══════════════════════════════════════════════════════════════
 
-# ── Top navbar ────────────────────────────────────────────────────────────────
+# Navbar
 st.markdown("""
 <div style="display:flex; align-items:center; justify-content:space-between;
-            padding: 12px 0 20px 0; border-bottom: 1px solid #1f1f1f; margin-bottom:28px;">
-    <div style="display:flex; align-items:center; gap:14px;">
-        <div style="background:#E50914; color:white; font-size:1.1rem; font-weight:900;
-                    padding:5px 14px; border-radius:3px; letter-spacing:2px;
-                    font-family:'Arial Black',sans-serif;">
-            NETFLIX
-        </div>
+            padding:16px 4px 24px 4px; border-bottom:1px solid #151515; margin-bottom:32px;">
+    <div style="display:flex; align-items:center; gap:16px;">
+        <span style="background:#E50914; color:#fff; font-size:1rem; font-weight:900;
+                     padding:6px 16px; border-radius:4px; letter-spacing:3px;
+                     font-family:'Arial Black',sans-serif;">NETFLIX</span>
         <div>
-            <div style="color:#ffffff; font-size:1rem; font-weight:700; line-height:1.2;">
-                Churn Predictor
-            </div>
-            <div style="color:#555; font-size:0.72rem; letter-spacing:0.5px;">
-                Random Forest · 98% Accuracy
+            <div style="color:#fff; font-weight:700; font-size:1.05rem;">Churn Predictor</div>
+            <div style="color:#333; font-size:0.7rem; letter-spacing:0.5px; margin-top:1px;">
+                Random Forest Classifier &nbsp;·&nbsp; 98% Accuracy
             </div>
         </div>
     </div>
-    <div style="background:#1a1a1a; border:1px solid #2a2a2a; border-radius:20px;
-                padding:5px 14px; font-size:0.75rem; color:#666;">
-        TechCrush AI/ML Bootcamp · Group 1
+    <div style="color:#2a2a2a; font-size:0.72rem; letter-spacing:0.5px;">
+        TechCrush AI/ML Bootcamp &nbsp;·&nbsp; Group 1
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# ── Two-column layout ─────────────────────────────────────────────────────────
-left_col, right_col = st.columns([1.1, 0.9], gap="large")
+# Two columns
+left, right = st.columns([1.05, 0.95], gap="large")
 
-# ════════════════════════════════
-# LEFT — Input Form
-# ════════════════════════════════
-with left_col:
-    st.markdown('<div class="section-label">Customer Activity</div>', unsafe_allow_html=True)
+# ══════════════════════
+# LEFT — Input form
+# ══════════════════════
+with left:
 
-    c1, c2 = st.columns(2)
-    with c1:
+    # Activity section
+    st.markdown("""
+    <div style="font-size:0.65rem; font-weight:700; letter-spacing:2.5px;
+                color:#E50914; text-transform:uppercase; margin-bottom:14px;">
+        Customer Activity
+    </div>
+    """, unsafe_allow_html=True)
+
+    a1, a2 = st.columns(2)
+    with a1:
         age             = st.number_input("Age", min_value=10, max_value=100, value=30)
         watch_hours     = st.number_input("Total Watch Hours", min_value=0.0, max_value=5000.0, value=200.0, step=10.0)
         last_login_days = st.number_input("Days Since Last Login", min_value=0, max_value=365, value=10)
-    with c2:
+    with a2:
         monthly_fee            = st.number_input("Monthly Fee ($)", min_value=0.0, max_value=50.0, value=15.99, step=0.01)
         number_of_profiles     = st.number_input("Number of Profiles", min_value=1, max_value=5, value=2)
-        avg_watch_time_per_day = st.number_input("Avg Watch Time/Day (hrs)", min_value=0.0, max_value=24.0, value=2.0, step=0.1)
-
-    st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
-    st.markdown('<div class="section-label">Customer Profile</div>', unsafe_allow_html=True)
-
-    c3, c4 = st.columns(2)
-    with c3:
-        subscription_type = st.selectbox("Subscription Type", ["Basic", "Standard", "Premium"])
-        gender            = st.selectbox("Gender", ["Female", "Male", "Other"])
-        region            = st.selectbox("Region", ["Africa", "Asia", "Europe", "North America", "Oceania", "South America"])
-    with c4:
-        device         = st.selectbox("Primary Device", ["Desktop", "Laptop", "Mobile", "TV", "Tablet"])
-        payment_method = st.selectbox("Payment Method", ["Bank Transfer", "Crypto", "Debit Card", "Gift Card", "PayPal"])
-        favorite_genre = st.selectbox("Favourite Genre", ["Action", "Comedy", "Documentary", "Drama", "Horror", "Romance", "Sci-Fi"])
+        avg_watch_time_per_day = st.number_input("Avg Watch Time / Day (hrs)", min_value=0.0, max_value=24.0, value=2.0, step=0.1)
 
     st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
-    predict_clicked = st.button("🔮  PREDICT CHURN", use_container_width=True, type="primary")
 
-    # Feature importance — tucked below the form as a side note
-    st.markdown("<div style='height:28px'></div>", unsafe_allow_html=True)
-    with st.expander("ℹ️  What features influence this model?", expanded=False):
+    # Profile section
+    st.markdown("""
+    <div style="font-size:0.65rem; font-weight:700; letter-spacing:2.5px;
+                color:#E50914; text-transform:uppercase; margin-bottom:14px;">
+        Customer Profile
+    </div>
+    """, unsafe_allow_html=True)
+
+    b1, b2 = st.columns(2)
+    with b1:
+        subscription_type = st.selectbox("Subscription Type", ["Basic", "Standard", "Premium"])
+        gender            = st.selectbox("Gender", ["Female", "Male", "Other"])
+        region            = st.selectbox("Region", ["Africa", "Asia", "Europe",
+                                                     "North America", "Oceania", "South America"])
+    with b2:
+        device         = st.selectbox("Primary Device", ["Desktop", "Laptop", "Mobile", "TV", "Tablet"])
+        payment_method = st.selectbox("Payment Method", ["Bank Transfer", "Crypto",
+                                                          "Debit Card", "Gift Card", "PayPal"])
+        favorite_genre = st.selectbox("Favourite Genre", ["Action", "Comedy", "Documentary",
+                                                           "Drama", "Horror", "Romance", "Sci-Fi"])
+
+    st.markdown("<div style='height:24px'></div>", unsafe_allow_html=True)
+    clicked = st.button("🔮  PREDICT CHURN", use_container_width=True, type="primary")
+
+    # Feature importance — collapsed side note
+    st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
+    with st.expander("📊  Model Feature Importance", expanded=False):
         st.markdown("""
-        <div style="color:#666; font-size:0.78rem; margin-bottom:10px;">
-        The chart below shows the top 10 features the Random Forest model
-        learned to weigh most heavily when predicting churn.
-        This is a property of the model itself, not a result of your input.
+        <div style="color:#3a3a3a; font-size:0.76rem; line-height:1.7; margin-bottom:12px;">
+        These are the features the model weighs most heavily when
+        predicting churn — independent of any individual input.
         </div>
         """, unsafe_allow_html=True)
-        fig = plot_feature_importance(top_n=10)
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(plot_feature_importance(), use_container_width=True)
 
-# ════════════════════════════════
-# RIGHT — Results Panel
-# ════════════════════════════════
-with right_col:
-    if not predict_clicked:
-        # Idle state
+# ══════════════════════
+# RIGHT — Results
+# ══════════════════════
+with right:
+
+    if not clicked:
         st.markdown("""
-        <div style="height:100%; min-height:420px; display:flex; flex-direction:column;
-                    align-items:center; justify-content:center; text-align:center;
-                    background:#111; border-radius:12px; border:1px dashed #222; padding:40px 30px;">
-            <div style="font-size:3rem; margin-bottom:16px;">🎬</div>
-            <div style="color:#333; font-size:1rem; font-weight:600; margin-bottom:8px;">
-                No prediction yet
+        <div style="display:flex; flex-direction:column; align-items:center;
+                    justify-content:center; text-align:center;
+                    min-height:460px; background:#0d0d0d;
+                    border:1px dashed #1a1a1a; border-radius:14px; padding:48px 32px;">
+            <div style="font-size:2.8rem; margin-bottom:18px; opacity:0.3;">🎬</div>
+            <div style="color:#222; font-size:0.95rem; font-weight:600; margin-bottom:8px;">
+                Awaiting prediction
             </div>
-            <div style="color:#2a2a2a; font-size:0.82rem; line-height:1.6;">
-                Fill in the customer details on the left<br/>and click <strong style="color:#444;">Predict Churn</strong> to see results.
+            <div style="color:#1a1a1a; font-size:0.8rem; line-height:1.8; max-width:220px;">
+                Complete the form and click<br/>
+                <strong style="color:#2a2a2a;">Predict Churn</strong> to see results here.
             </div>
         </div>
         """, unsafe_allow_html=True)
+
     else:
-        input_df = build_input_df(
-            age, watch_hours, last_login_days, monthly_fee,
-            number_of_profiles, avg_watch_time_per_day,
-            subscription_type, gender, region, device,
-            payment_method, favorite_genre
-        )
-        prediction, probability = preprocess_and_predict(input_df)
-        churn_prob  = probability[1] * 100
-        retain_prob = probability[0] * 100
+        df = build_input_df(age, watch_hours, last_login_days, monthly_fee,
+                            number_of_profiles, avg_watch_time_per_day,
+                            subscription_type, gender, region, device,
+                            payment_method, favorite_genre)
+        pred, prob = preprocess_and_predict(df)
+        churn_pct  = prob[1] * 100
+        retain_pct = prob[0] * 100
 
-        # Result card wrapper
-        card_border = "#E50914" if prediction == 1 else "#00c853"
-        card_bg     = "#160000" if prediction == 1 else "#001209"
+        is_churn   = pred == 1
+        accent     = "#E50914" if is_churn else "#00c853"
+        bg         = "#110000" if is_churn else "#001510"
+        status_txt = "High Churn Risk" if is_churn else "Low Churn Risk"
+        status_ico = "⚠️" if is_churn else "✅"
+        sub_txt    = ("This customer is likely to cancel their subscription."
+                      if is_churn else
+                      "This customer is likely to remain subscribed.")
 
+        # Top accent line + card
         st.markdown(f"""
-        <div style="background:{card_bg}; border:1px solid {card_border}33;
-                    border-top:3px solid {card_border};
-                    border-radius:12px; padding:28px 24px;">
-        """, unsafe_allow_html=True)
+        <div style="border-radius:14px; background:{bg};
+                    border:1px solid {accent}22;
+                    box-shadow: 0 0 40px {accent}11;
+                    padding:28px 28px 24px 28px;">
 
-        st.markdown('<div class="section-label">Prediction Result</div>', unsafe_allow_html=True)
+            <div style="font-size:0.65rem; font-weight:700; letter-spacing:2.5px;
+                        color:{accent}; text-transform:uppercase; margin-bottom:16px;">
+                Prediction Result
+            </div>
 
-        if prediction == 1:
-            st.markdown(f"""
-            <div style="margin:12px 0 20px 0;">
-                <div style="font-size:1.6rem; font-weight:800; color:#E50914; line-height:1.2;">
-                    ⚠️ High Churn Risk
+            <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom:8px;">
+                <div style="font-size:1.8rem; line-height:1;">{status_ico}</div>
+                <div>
+                    <div style="font-size:1.45rem; font-weight:800; color:#ffffff;
+                                line-height:1.2; letter-spacing:-0.3px;">
+                        {status_txt}
+                    </div>
+                    <div style="color:#444; font-size:0.82rem; margin-top:5px;">
+                        {sub_txt}
+                    </div>
                 </div>
-                <div style="color:#aa4444; font-size:0.88rem; margin-top:6px;">
-                    This customer is likely to cancel their subscription.
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-        else:
-            st.markdown(f"""
-            <div style="margin:12px 0 20px 0;">
-                <div style="font-size:1.6rem; font-weight:800; color:#00c853; line-height:1.2;">
-                    ✅ Low Churn Risk
-                </div>
-                <div style="color:#2e7d4f; font-size:0.88rem; margin-top:6px;">
-                    This customer is likely to stay subscribed.
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-
-        # Two metrics only
-        m1, m2 = st.columns(2)
-        m1.metric("Churn Probability",  f"{churn_prob:.1f}%")
-        m2.metric("Retention Probability", f"{retain_prob:.1f}%")
-
-        # Risk meter
-        bar_color = "#E50914" if prediction == 1 else "#00c853"
-        st.markdown(f"""
-        <div style="margin: 22px 0 6px 0;">
-            <div style="color:#444; font-size:0.7rem; font-weight:700;
-                        letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px;">
-                Churn Risk Meter
-            </div>
-            <div style="background:#1a1a1a; border-radius:20px; height:10px; overflow:hidden;">
-                <div style="width:{churn_prob:.1f}%; background:{bar_color};
-                            height:100%; border-radius:20px;
-                            box-shadow: 0 0 8px {bar_color}88;">
-                </div>
-            </div>
-            <div style="display:flex; justify-content:space-between;
-                        color:#333; font-size:0.7rem; margin-top:5px;">
-                <span>0% Safe</span><span>{churn_prob:.1f}%</span><span>100% Critical</span>
             </div>
         </div>
         """, unsafe_allow_html=True)
 
         st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
 
-        # Recommendations
-        st.markdown("""
-        <div style="color:#444; font-size:0.7rem; font-weight:700;
-                    letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px;">
-            Recommended Actions
+        # Metrics
+        m1, m2 = st.columns(2)
+        m1.metric("Churn Probability", f"{churn_pct:.1f}%")
+        m2.metric("Retention Probability", f"{retain_pct:.1f}%")
+
+        st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
+
+        # Risk meter
+        st.markdown(f"""
+        <div style="background:#0f0f0f; border:1px solid #1a1a1a;
+                    border-radius:12px; padding:20px 22px;">
+            <div style="font-size:0.65rem; font-weight:700; letter-spacing:2px;
+                        color:#333; text-transform:uppercase; margin-bottom:14px;">
+                Churn Risk Meter
+            </div>
+            <div style="background:#161616; border-radius:99px; height:8px; overflow:hidden;">
+                <div style="width:{churn_pct:.1f}%; background:{accent};
+                            height:100%; border-radius:99px;
+                            box-shadow:0 0 10px {accent}88; transition:width 0.6s;">
+                </div>
+            </div>
+            <div style="display:flex; justify-content:space-between;
+                        margin-top:8px; font-size:0.68rem; color:#2a2a2a;">
+                <span>0% — Safe</span>
+                <span style="color:{accent}; font-weight:700;">{churn_pct:.1f}%</span>
+                <span>100% — Critical</span>
+            </div>
         </div>
         """, unsafe_allow_html=True)
 
-        if prediction == 1:
-            st.markdown("""
-            <ul style="color:#888 !important; font-size:0.83rem; line-height:2; padding-left:18px; margin:0;">
-                <li>Send a personalised re-engagement notification</li>
-                <li>Offer a discounted plan upgrade or loyalty reward</li>
-                <li>Curate content based on their favourite genre</li>
-                <li>Flag for customer success team follow-up</li>
-            </ul>
-            """, unsafe_allow_html=True)
+        st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
+
+        # Recommendations
+        if is_churn:
+            actions = [
+                "Send a personalised re-engagement notification",
+                "Offer a discounted upgrade or loyalty reward",
+                "Curate recommendations based on favourite genre",
+                "Flag for customer success team follow-up",
+            ]
         else:
-            st.markdown("""
-            <ul style="color:#888 !important; font-size:0.83rem; line-height:2; padding-left:18px; margin:0;">
-                <li>Continue personalised content recommendations</li>
-                <li>Reward loyalty with exclusive previews</li>
-            </ul>
-            """, unsafe_allow_html=True)
+            actions = [
+                "Continue personalised content recommendations",
+                "Reward loyalty with exclusive previews or early access",
+                "Offer referral incentives to increase plan stickiness",
+            ]
 
-        st.markdown("</div>", unsafe_allow_html=True)
+        actions_html = "".join([
+            f'<div style="display:flex; align-items:flex-start; gap:10px; margin-bottom:10px;">'
+            f'<div style="width:5px; height:5px; background:{accent}; border-radius:50%; '
+            f'margin-top:6px; flex-shrink:0;"></div>'
+            f'<div style="color:#555; font-size:0.82rem; line-height:1.5;">{a}</div></div>'
+            for a in actions
+        ])
 
-# ── Footer ────────────────────────────────────────────────────────────────────
+        st.markdown(f"""
+        <div style="background:#0f0f0f; border:1px solid #1a1a1a;
+                    border-radius:12px; padding:20px 22px;">
+            <div style="font-size:0.65rem; font-weight:700; letter-spacing:2px;
+                        color:#333; text-transform:uppercase; margin-bottom:14px;">
+                Recommended Actions
+            </div>
+            {actions_html}
+        </div>
+        """, unsafe_allow_html=True)
+
+# Footer
 st.markdown("""
-<div style="text-align:center; color:#222; font-size:0.75rem;
-            padding: 32px 0 12px 0; border-top: 1px solid #161616; margin-top:32px;">
-    Built by <strong style="color:#333;">Group 1</strong> ·
-    TechCrush AI/ML Bootcamp Capstone · 2024
+<div style="text-align:center; padding:40px 0 16px 0; border-top:1px solid #111; margin-top:40px;">
+    <span style="color:#1e1e1e; font-size:0.72rem; letter-spacing:0.5px;">
+        Built by Group 1 &nbsp;·&nbsp; TechCrush AI/ML Bootcamp Capstone &nbsp;·&nbsp; 2025
+    </span>
 </div>
 """, unsafe_allow_html=True)
